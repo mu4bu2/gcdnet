@@ -338,23 +338,23 @@ SUBROUTINE hsvmlassoNETpath (delta, lam2, maj, nobs, nvars, x, y, ju, &
                 END IF
               END IF
             END DO !!! end updating beta's
-            d = 0.0D0
-            DO i = 1, nobs !!! begin updating beta0
-              IF (r(i) > 1.0D0) THEN
-                dl (i) = 0.0D0
-              ELSE IF (r(i) <= (1-delta)) THEN
-                dl (i) = - 1.0D0
-              ELSE
-                dl (i) = (r(i)-1.0D0) / delta
-              END IF
-              d = d + dl (i) * y (i)
-            END DO !!! end updating beta0
-            d = - 0.5D0 * delta * d / nobs
-            IF (ABS(d) > 0.0D0) THEN
-              b (0) = b (0) !+  d
-              !r = r + y * d
-              dif = Max(dif, d**2)
-            END IF
+            !d = 0.0D0
+            !DO i = 1, nobs !!! begin updating beta0
+            !  IF (r(i) > 1.0D0) THEN
+            !    dl (i) = 0.0D0
+            !  ELSE IF (r(i) <= (1-delta)) THEN
+            !    dl (i) = - 1.0D0
+            !  ELSE
+            !    dl (i) = (r(i)-1.0D0) / delta
+            !  END IF
+            !  d = d + dl (i) * y (i)
+            !END DO !!! end updating beta0
+            !d = - 0.5D0 * delta * d / nobs
+            !IF (ABS(d) > 0.0D0) THEN
+            !  b (0) = b (0) !+  d
+            !  !r = r + y * d
+            !  dif = Max(dif, d**2)
+            !END IF
             IF (ni > pmax) EXIT
             IF (dif < eps * delta) EXIT
             IF(npass > maxit) THEN
