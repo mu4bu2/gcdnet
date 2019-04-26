@@ -351,8 +351,8 @@ SUBROUTINE hsvmlassoNETpath (delta, lam2, maj, nobs, nvars, x, y, ju, &
             END DO !!! end updating beta0
             d = - 0.5D0 * delta * d / nobs
             IF (ABS(d) > 0.0D0) THEN
-              b (0) = b (0) +  d
-              r = r + y * d
+              b (0) = b (0) !+  d
+              ! r = r + y * d
               dif = Max(dif, d**2)
             END IF
             IF (ni > pmax) EXIT
@@ -409,8 +409,8 @@ SUBROUTINE hsvmlassoNETpath (delta, lam2, maj, nobs, nvars, x, y, ju, &
               END DO
               d = - 0.5D0 * delta * d / nobs
               IF (ABS(d) > 0.0D0) THEN
-                b (0) = b (0) + d
-                r = r + y * d
+                b (0) = b (0) !+ d
+                !r = r + y * d
                 dif = Max (dif, d**2)
               END IF
               IF (dif < eps * delta) EXIT
