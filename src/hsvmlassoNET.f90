@@ -161,7 +161,7 @@ SUBROUTINE hsvmlassoNET (delta, lam2, nobs, nvars, x, y, jd, pf, pf2, dfmax, &
                beta (j, l) = beta (j, l) / xnorm (ibeta(j))
             END DO
          END IF
-         b0 (l) = b0 (l) !- dot_product (beta(1:nk, l), &
+         !b0 (l) = b0 (l) - dot_product (beta(1:nk, l), &
         !& xmean(ibeta(1:nk)))
       END DO
       DEALLOCATE (ju, xmean, xnorm, maj)
@@ -230,8 +230,8 @@ SUBROUTINE hsvmlassoNETpath (delta, lam2, maj, nobs, nvars, x, y, ju, &
       INTEGER, DIMENSION (:), ALLOCATABLE :: mm
       ! - - - begin main program - - - !
       ! - - - allocate variables - - - !
-      ALLOCATE (b(0:nvars), STAT=jerr)
-      ALLOCATE (oldbeta(0:nvars), STAT=ierr)
+      ALLOCATE (b(1:nvars), STAT=jerr)
+      ALLOCATE (oldbeta(1:nvars), STAT=ierr)
       jerr = jerr + ierr
       ALLOCATE (mm(1:nvars), STAT=ierr)
       jerr = jerr + ierr
@@ -292,7 +292,7 @@ SUBROUTINE hsvmlassoNETpath (delta, lam2, maj, nobs, nvars, x, y, ju, &
         ! ------------------ outer loop -------------------- !
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         DO !!! begin outer loop
-          oldbeta(0) = b(0)
+          !oldbeta(0) = b(0)
           IF (ni > 0) oldbeta(m(1:ni)) = b(m(1:ni))
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -445,7 +445,7 @@ SUBROUTINE hsvmlassoNETpath (delta, lam2, maj, nobs, nvars, x, y, ju, &
         END IF
         IF (ni > 0) beta (1:ni, l) = b (m(1:ni))
         nbeta (l) = ni
-        b0 (l) = b (0)
+        !b0 (l) = b (0)
         alam (l) = al
         nalam = l
         IF (l < mnl) CYCLE
