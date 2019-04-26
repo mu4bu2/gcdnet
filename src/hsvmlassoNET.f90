@@ -161,8 +161,8 @@ SUBROUTINE hsvmlassoNET (delta, lam2, nobs, nvars, x, y, jd, pf, pf2, dfmax, &
                beta (j, l) = beta (j, l) / xnorm (ibeta(j))
             END DO
          END IF
-         b0 (l) = b0 (l) - dot_product (beta(1:nk, l), &
-        & xmean(ibeta(1:nk)))
+         b0 (l) = b0 (l) !- dot_product (beta(1:nk, l), &
+        !& xmean(ibeta(1:nk)))
       END DO
       DEALLOCATE (ju, xmean, xnorm, maj)
       RETURN
