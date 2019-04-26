@@ -407,12 +407,12 @@ SUBROUTINE hsvmlassoNETpath (delta, lam2, maj, nobs, nvars, x, y, ju, &
                 END IF
                 d = d + dl (i) * y (i)
               END DO
-              d = - 0.5D0 * delta * d / nobs
-              IF (ABS(d) > 0.0D0) THEN
-                b (0) = b (0) !+ d
-                !r = r + y * d
-                dif = Max (dif, d**2)
-              END IF
+              !d = - 0.5D0 * delta * d / nobs
+              !IF (ABS(d) > 0.0D0) THEN
+              !  b (0) = b (0) !+ d
+              !  !r = r + y * d
+              !  dif = Max (dif, d**2)
+              !END IF
               IF (dif < eps * delta) EXIT
               IF(npass > maxit) THEN
                    jerr=-l
